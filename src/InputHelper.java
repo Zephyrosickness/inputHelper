@@ -66,6 +66,69 @@ public class InputHelper {
 
 
 
+    //[[[---DOUBLES---]]]
+
+    //checksum for valid double input | any values are accepted, as long as it's an double.
+    public static double getDouble(final String message){
+        Scanner scan = new Scanner(System.in);
+        double input;
+        System.out.println(message);
+
+        do{
+            if(scan.hasNextDouble()){
+                input = scan.nextDouble();
+                break;
+
+            }else{System.out.println("Invalid input. Try again.");}
+
+        }while(true);
+
+        return input;
+    }
+
+    //checksum for valid, positive double input, (excl zero)
+    public static double getPositiveDouble(final String message){
+        Scanner scan = new Scanner(System.in);
+        double input;
+        System.out.println(message);
+
+        do{
+            if(scan.hasNextDouble()) {
+                input = scan.nextDouble();
+                if (input>0) {break; //when input meets reqs
+
+                }else{System.out.println("Please enter a positive, non-zero decimal value.");} //if input is an double, but is 0 or lower
+
+            }else{System.out.println("Invalid input. Try again.");} //if input is not double
+
+        }while(true);
+
+        return input;
+    }
+
+    //checksum for valid, positive double input within range
+    public static double getRangedDouble(final String message, final double MIN, final double MAX){
+        Scanner scan = new Scanner(System.in);
+        double input;
+        System.out.println(message);
+        final String bounds = " [MIN: "+MIN+" MAX: "+MAX+"]"; //is appended to the end of any statements when the user enters invalid nums. example: "Invalid Input. Try again. [MIN: 0 MAX: 300]
+
+        do{
+            if(scan.hasNextDouble()) {
+                input = scan.nextDouble();
+                if (input>=MIN&&input<=MAX) {break; //when input meets reqs
+
+                }else{System.out.println("Please enter a positive, non-zero decimal value."+bounds);} //if input is an double, but is 0 or lower
+
+            }else{System.out.println("Invalid input. Try again."+bounds);} //if input is not double
+
+        }while(true);
+
+        return input;
+    }
+
+
+
     //[[[---STRINGS---]]]
 
     //gets a string that is not null or a length of 0
