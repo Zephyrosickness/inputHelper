@@ -18,6 +18,7 @@ public class InputHelper {
 
             }else{System.out.println("Invalid input. Try again.");}
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -36,8 +37,9 @@ public class InputHelper {
 
                 }else{System.out.println("Please enter a positive, non-zero integer value.");} //if input is an int, but is 0 or lower
 
-                }else{System.out.println("Invalid input. Try again.");} //if input is not int
+            }else{System.out.println("Invalid input. Try again.");} //if input is not int
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -47,8 +49,9 @@ public class InputHelper {
     public static int getRangedInt(final String message, final int MIN, final int MAX){
         Scanner scan = new Scanner(System.in);
         int input;
-        System.out.println(message);
         final String bounds = " [MIN: "+MIN+" MAX: "+MAX+"]"; //is appended to the end of any statements when the user enters invalid nums. example: "Invalid Input. Try again. [MIN: 0 MAX: 300]
+        System.out.println(message+bounds);
+
 
         do{
             if(scan.hasNextInt()) {
@@ -59,6 +62,7 @@ public class InputHelper {
 
             }else{System.out.println("Invalid input. Try again."+bounds);} //if input is not int
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -81,6 +85,7 @@ public class InputHelper {
 
             }else{System.out.println("Invalid input. Try again.");}
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -101,6 +106,7 @@ public class InputHelper {
 
             }else{System.out.println("Invalid input. Try again.");} //if input is not double
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -122,6 +128,7 @@ public class InputHelper {
 
             }else{System.out.println("Invalid input. Try again."+bounds);} //if input is not double
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -144,6 +151,7 @@ public class InputHelper {
 
             }else{System.out.println("Sorry, you've entered an invalid response, try again. Please enter a valid, non-zero string.");}
 
+            scan.nextLine();
         }while (true);
 
         return input;
@@ -151,24 +159,29 @@ public class InputHelper {
 
     //checksum for a nonzero-length string that is in a REGULAR NON-LIST ARRAY
     //so if u have an array that's like [tomato, beans, carrots] you have to type in beans tomato or carrots
-    public static String getYN(final String message){
+    public static boolean getYN(final String message){
         //init var
         Scanner scan = new Scanner(System.in);
         String input;
         System.out.println(message+" [Y/N]");
         final String[] options = {"y","n","yes","no"};
+        boolean output = false;
 
         do{
             input = scan.nextLine().toLowerCase(); //casts input to lower case to account for case differences
 
-            if(Arrays.asList(options).contains(input)) {break;
+            if(Arrays.asList(options).contains(input)) {
+                if(input.equalsIgnoreCase("y")||input.equalsIgnoreCase("yes")){
+                    output = true;
+                }
+                break;
 
                 //casts options to arraylist because printing regular arrays isnt readable only lists are
             }else{System.out.println("Sorry, you've entered an invalid input. Please try again. | VALID INPUTS: "+Arrays.asList(options));}
 
         }while(true);
 
-        return input;
+        return output;
     }
 
     //takes inputs until it matches specified regex pattern
@@ -177,7 +190,6 @@ public class InputHelper {
         String input;
 
         do {input = scan.nextLine();}while (!input.matches(regExPattern));
-
         return input;
     }
 
@@ -199,6 +211,7 @@ public class InputHelper {
 
             }else{System.out.println("Sorry, you've entered an invalid input. Please try again. | VALID INPUTS: "+options);}
 
+            scan.nextLine();
         }while(true);
 
         return input;
@@ -220,10 +233,9 @@ public class InputHelper {
 
             }else{System.out.println("Sorry, you've entered an invalid input. Please try again. | VALID INPUTS: "+optionsList);}
 
+            scan.nextLine();
         }while(true);
 
         return input;
     }
-
-    
 }
